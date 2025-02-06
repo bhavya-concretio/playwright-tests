@@ -1,0 +1,8 @@
+{
+    "salesforceUsername": "bhavya@concret.io",
+    "salesforcePassword":"porwal123",
+
+    "objectName":"level",
+    "pluralObjectName":"levels",
+    "recordNumber":"level number"
+}
