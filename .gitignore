@@ -5,6 +5,6 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
-/tests/login.json/
-/tests/sca.json/
-/test/objectCreation.json/
+/tests/login/
+/tests/sca/
+/test/objectCreation/
