@@ -1,6 +1,5 @@
 import {test, expect} from '@playwright/test';
 import constants from '../utils/constants';
-import exp from 'constants';
 const {readFileSync}= require('fs');
 
 let dataForEveerthing= 'tests/objectCreation.json';
@@ -81,6 +80,18 @@ test("Creating a custom object", async function ({page}) {
 
     expect(constants.OBJECT_CREATED_PAGE).toBeTruthy();
 
+    await page.getByRole('button', {name:'Delete'}).waitFor({state:"visible"});
+    await page.getByRole('button', {name:'Delete'}).click();
+
+    await page.waitForTimeout(1000);
+
+    await page.locator("div[id^=content_]").waitFor({state:'visible'});
+    // await page.locator(".modal-footer slds-modal__footer").getByTitle("delete").waitFor({state:"visible"});
+    await page.getByRole('button', { name: 'Delete' }).click();
+    expect(constants.AFTER_DELETE_URL).toBeTruthy();
+    await page.waitForTimeout(2000);
+
+
     // await page.locator('iframe[name="vfFrameId_1738755690079"]').contentFrame().getByRole('textbox', { name: '* Label' }).click();
     // const menu=page.locator("div.actionMenu[role='menu']");
     // await menu.waitFor();
@@ -105,10 +116,3 @@ test("Creating a custom object", async function ({page}) {
     
 })
 
-test("Deletion of that custom object(level)", async function({page}){
-    const dataForEveerthingFile= readFileSync(dataForEveerthing);
-    var dataForEveerthingFileObj = JSON.parse(dataForEveerthingFile);
-
-    expect(constants.OBJECT_CREATED_PAGE).toBeTruthy();
-    
-})
