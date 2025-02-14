@@ -21,7 +21,7 @@ test("Creating a custom object", async function ({page}) {
 
     await page.getByTitle('Object Manager').click();
     expect(constants.OBJECTPAGE_URL).toBeTruthy();
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(2000);
 
     console.log('Attempting to click the Create button...');
     await page.getByRole('button', { name: 'Create' }).waitFor();
@@ -30,7 +30,7 @@ test("Creating a custom object", async function ({page}) {
     await create.click();
 
     console.log('Create button clicked.');
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(1000);
 
     console.log('Waiting for the Custom Object menu item to be visible...');
     await page.getByRole('menuitem', { name: 'Custom Object', exact: true }).waitFor({state: 'visible'});
@@ -80,13 +80,14 @@ test("Creating a custom object", async function ({page}) {
 
     expect(constants.OBJECT_CREATED_PAGE).toBeTruthy();
 
+
+    //DELETION OF OBJECT
     await page.getByRole('button', {name:'Delete'}).waitFor({state:"visible"});
     await page.getByRole('button', {name:'Delete'}).click();
 
     await page.waitForTimeout(1000);
 
     await page.locator("div[id^=content_]").waitFor({state:'visible'});
-    // await page.locator(".modal-footer slds-modal__footer").getByTitle("delete").waitFor({state:"visible"});
     await page.getByRole('button', { name: 'Delete' }).click();
     expect(constants.AFTER_DELETE_URL).toBeTruthy();
     await page.waitForTimeout(2000);
